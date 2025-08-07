@@ -749,6 +749,7 @@ class PPO:
         for key, value in loaded_algorithm_config.items():
             if f"algorithm.{key}" not in explicitly_set_algorithm_params:
                 config.algorithm[key] = value
+
         model = PPO(config, env, run_path, writer)
 
         target = {

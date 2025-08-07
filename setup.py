@@ -12,6 +12,7 @@ def read_requirements_file(filename):
     with open(file_path) as f:
         return [line.strip() for line in f]
 
+print("Dayo")
 
 setup(
     name="one_policy_to_run_them_all",

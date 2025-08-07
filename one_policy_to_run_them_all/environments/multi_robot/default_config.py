@@ -10,7 +10,7 @@ def get_config(environment_name):
     config.nr_eval_envs = 0
     config.train_robot_types = (
         "unitree_a1", "unitree_go1", "unitree_go2", "anymal_b", "anymal_c", "barkour_v0", "barkour_vb", "badger", "bittle",
-        "unitree_h1", "unitree_g1", "talos", "robotis_op3", "nao_v5", "cassie",
+        "unitree_h1", "unitree_g1", "talos", "robotis_op3", "nao_v5", "cassie", "cosmo",
         "hexapod"
     )
     config.eval_robot_types = ()
@@ -42,6 +42,7 @@ def get_config(environment_name):
     config.termination_type_bkv0 = "rudin2022"
     config.termination_type_bkvb = "rudin2022"
     config.termination_type_cas = "height"
+    config.termination_type_cos = "height"
     config.termination_type_nao5 = "height"
     config.termination_type_bit = "rudin2022"
     config.termination_type_at = "height"

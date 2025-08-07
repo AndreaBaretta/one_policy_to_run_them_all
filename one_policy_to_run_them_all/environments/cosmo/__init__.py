@@ -1,0 +1,8 @@
+from rl_x.environments.environment_manager import extract_environment_name_from_file, register_environment
+from one_policy_to_run_them_all.environments.cosmo.create_env import create_env
+from one_policy_to_run_them_all.environments.cosmo.default_config import get_config
+from one_policy_to_run_them_all.environments.cosmo.general_properties import GeneralProperties
+
+
+COSMO = extract_environment_name_from_file(__file__)
+register_environment(COSMO, get_config, create_env, GeneralProperties)

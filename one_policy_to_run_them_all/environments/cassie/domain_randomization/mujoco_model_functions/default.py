@@ -1,3 +1,5 @@
+import mujoco
+
 class DefaultDomainMuJoCoModel:
     def __init__(self, env,
                  friction_tangential_min=0.8, friction_tangential_max=1.2,

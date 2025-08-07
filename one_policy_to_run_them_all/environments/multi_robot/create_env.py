@@ -102,6 +102,7 @@ def create_env(config):
     action_sizes = []
     for robot_type in config.environment.train_robot_types + config.environment.eval_robot_types:
         env_class = get_env_class_from_robot_type(robot_type)
+        print(f"robot_type: {robot_type}")
         env = make_env(env_class, config.environment.seed, purpose_initial_check=True)()
         observation_sizes.append(env.observation_space.shape[0])
         action_sizes.append(env.action_space.shape[0])

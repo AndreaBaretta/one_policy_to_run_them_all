@@ -18,6 +18,7 @@ from one_policy_to_run_them_all.environments.nao_v5.environment import NaoV5
 from one_policy_to_run_them_all.environments.bittle.environment import Bittle
 from one_policy_to_run_them_all.environments.atlas.environment import Atlas
 from one_policy_to_run_them_all.environments.sea_snake.environment import SEASnake
+from one_policy_to_run_them_all.environments.cosmo.environment import Cosmo
 
 
 class Robot:
@@ -44,6 +45,7 @@ ROBOTS = [
     Robot(BarkourV0, BarkourV0.LONG_NAME, BarkourV0.SHORT_NAME),
     Robot(BarkourVB, BarkourVB.LONG_NAME, BarkourVB.SHORT_NAME),
     Robot(Cassie, Cassie.LONG_NAME, Cassie.SHORT_NAME),
+    Robot(Cosmo, Cosmo.LONG_NAME, Cosmo.SHORT_NAME),
     Robot(NaoV5, NaoV5.LONG_NAME, NaoV5.SHORT_NAME),
     Robot(Bittle, Bittle.LONG_NAME, Bittle.SHORT_NAME),
     Robot(Atlas, Atlas.LONG_NAME, Atlas.SHORT_NAME),
