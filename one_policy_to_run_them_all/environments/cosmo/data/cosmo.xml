@@ -30,9 +30,22 @@
   <compiler angle="radian" />
 
   <asset>
+    <!-- Textures -->
+    <texture name="head_texture" type="2d" file="meshes_visuals/textures/head_color.png" />
+    <texture name="hand_texture" type="2d" file="meshes_visuals/textures/hand_color.png" />
+    <texture name="body_texture" type="2d" file="meshes_visuals/textures/body_color.png" />
+    
+    <!-- Materials -->
     <material name="visualgeom" rgba="0.75294 0.75294 0.75294 1" />
     <material name="default_material" rgba="0.7 0.7 0.7 1" />
     <material name="collision_material" rgba="1.0 0.28 0.1 0" />
+    
+    <!-- Textured materials -->
+    <material name="head_material" texture="head_texture" />
+    <material name="hand_material" texture="hand_texture" />
+    <material name="body_material" texture="body_texture" />
+    
+    <!-- Meshes -->
     <mesh name="body_hull.STL" file="meshes/body_hull.STL" />
     <mesh name="body.STL" file="meshes_visuals/obj/body.obj" />
     <mesh name="hip_r.STL" file="meshes_visuals/obj/hip_r.obj" />
@@ -84,7 +97,7 @@
       <body name="body" pos="0 0 0" quat="1.0 0.0 0.0 0.0">
         <inertial pos="-0.014539 -0.00058048 0.087038" quat="1.0 0.0 0.0 0.0" mass="8.1972" diaginertia="0.013736 0.020824 0.019654" />
         <geom name="body_collision" pos="0 0 0" quat="1.0 0.0 0.0 0.0" type="mesh" mesh="body_hull.STL" class="collision" />
-        <geom name="body_visual" pos="0 0 0" quat="0.7071068 0.7071068 0 0" type="mesh" mesh="body.STL" class="visual" />
+        <geom name="body_visual" pos="0 0 0" quat="0.7071068 0.7071068 0 0" material="body_material" type="mesh" mesh="body.STL" class="visual" />
         <body name="hip_l" pos="-0.065617 0.062475 -0.039049" quat="0.270595753366195 -0.6532810280864045 -0.653283427726018 0.27059674732172273">
           <joint name="hip_yaw_l" type="hinge" ref="0.0" class="motor-kbmb" range="-0.2 0.2" axis="0 0 1" />
           <inertial pos="3.4069E-05 -0.013049 -0.01716" quat="1.0 0.0 0.0 0.0" mass="0.5644" diaginertia="0.00028283 0.00040948 0.0002564" />
@@ -159,7 +172,7 @@
               <body name="hand_l" pos="-0.103000000000009 4.8991874364808E-05 -0.00490000000001528" quat="0.49999999999999817 -0.5 -0.5000000000000018 0.5">
                 <inertial pos="-0.0088755 -0.0094157 0.11508" quat="1.0 0.0 0.0 0.0" mass="0.54752" diaginertia="0.00025199 0.00043887 0.00030271" />
                 <geom name="hand_l_collision" pos="0 0 0" quat="1.0 0.0 0.0 0.0" type="mesh" mesh="hand_l_hull.STL" class="collision" />
-                <geom name="hand_l_visual" pos="0 0 0" quat="0.7071068 0.7071068 0 0" type="mesh" mesh="hand_l.STL" class="visual" />
+                <geom name="hand_l_visual" pos="0 0 0" quat="0.7071068 0.7071068 0 0" material="hand_material" type="mesh" mesh="hand_l.STL" class="visual" />
               </body>
             </body>
           </body>
@@ -180,7 +193,7 @@
               <body name="hand_r" pos="-0.103 -4.89918743357132E-05 -0.00489999999999796" quat="0.5000000000000008 -0.5000000000000026 -0.4999999999999992 0.4999999999999974">
                 <inertial pos="0.009838 -0.0068272 0.088456" quat="1.0 0.0 0.0 0.0" mass="0.54702" diaginertia="0.00030569 0.00058482 0.00040624" />
                 <geom name="hand_r_collision" pos="0 0 0" quat="1.0 0.0 0.0 0.0" type="mesh" mesh="hand_r_hull.STL" class="collision" />
-                <geom name="hand_r_visual" pos="0 0 0" quat="0.7071068 0.7071068 0 0" type="mesh" mesh="hand_r.STL" class="visual" />
+                <geom name="hand_r_visual" pos="0 0 0" quat="0.7071068 0.7071068 0 0" material="hand_material" type="mesh" mesh="hand_r.STL" class="visual" />
               </body>
             </body>
           </body>
@@ -193,7 +206,7 @@
             <joint name="z_head_tilt" type="hinge" ref="0.0" class="motor-kbmb" range="-0.5 0.5" axis="0 0 1" />
             <inertial pos="-0.13512 0.018019 0.002899" quat="1.0 0.0 0.0 0.0" mass="3.108" diaginertia="0.028772 0.033314 0.037863" />
             <geom name="neck_top_collision" pos="0 0 0" quat="1.0 0.0 0.0 0.0" type="mesh" mesh="neck_top_hull.STL" class="collision" />
-            <geom name="neck_top_visual" pos="0 0 0" quat="0.7071068 0.7071068 0 0" material="default_material" type="mesh" mesh="head.STL" class="visual" />
+            <geom name="neck_top_visual" pos="0 0 0" quat="0.7071068 0.7071068 0 0" material="head_material" type="mesh" mesh="head.STL" class="visual" />
           </body>
         </body>
       </body>
