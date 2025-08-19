@@ -1,6 +1,6 @@
 # TODO: Modify to use different PD gains per joint
 class Rudin2022Control:
-    def __init__(self, env, control_frequency_hz=50, p_gain=70, d_gain=1.5, scaling_factor=0.35):
+    def __init__(self, env, control_frequency_hz=50, p_gain=60, d_gain=1.5, scaling_factor=0.6):
         self.env = env
         self.control_frequency_hz = control_frequency_hz
         self.p_gain = p_gain
