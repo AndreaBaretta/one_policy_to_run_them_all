@@ -11,7 +11,7 @@
 #SBATCH --mem-per-cpu=2000
 #SBATCH --time=2-23:59:59
 
-conda activate one_policy_to_run_them_all
+# conda activate one_policy_to_run_them_all
 
 python experiment.py \
     --algorithm.name="uni_ppo.ppo" \
@@ -27,21 +27,22 @@ python experiment.py \
     --algorithm.max_grad_norm=5.0 \
     --algorithm.clip_range=0.1 \
     --algorithm.evaluation_episodes=50 \
-    --algorithm.evaluation_frequency=17233920 \
-    --algorithm.save_latest_frequency=17233920 \
+    --algorithm.evaluation_frequency=18311040 \
+    --algorithm.save_latest_frequency=18311040 \
     --algorithm.determine_fastest_cpu_for_gpu=True \
     --algorithm.device="gpu" \
     --environment.name="multi_robot" \
-    --environment.nr_envs=48 \
+    --environment.nr_envs=51 \
     --environment.async_skip_percentage=0.0 \
     --environment.cycle_cpu_affinity=True \
     --environment.seed=0 \
     --runner.mode="train" \
     --runner.track_console=False \
     --runner.track_tb=True \
-    --runner.track_wandb=True \
+    --runner.track_wandb=False \
     --runner.save_model=True \
     --runner.wandb_entity="placeholder" \
     --runner.project_name="one_policy_to_run_them_all" \
     --runner.exp_name="E0" \
-    --runner.notes=""
+    --runner.notes="" \
+    # --runner.load_model="pre_trained_model" \

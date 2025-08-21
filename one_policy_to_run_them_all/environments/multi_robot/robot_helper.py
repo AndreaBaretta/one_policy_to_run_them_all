@@ -27,7 +27,6 @@ class Robot:
         self.long_name = long_name
         self.short_name = short_name
 
-      
 ROBOTS = [
     Robot(UnitreeA1, UnitreeA1.LONG_NAME, UnitreeA1.SHORT_NAME),
     Robot(UnitreeGo1, UnitreeGo1.LONG_NAME, UnitreeGo1.SHORT_NAME),

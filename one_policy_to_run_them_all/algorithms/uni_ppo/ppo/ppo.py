@@ -370,7 +370,7 @@ class PPO:
                         losses.append(loss)
                         metrics.append(metric)
                     loss_mean = jnp.mean(jnp.array(losses))
-                    metrics_mean = jax.tree_map(lambda *x: jnp.mean(jnp.array(x)), *metrics)
+                    metrics_mean = jax.tree.map(lambda *x: jnp.mean(jnp.array(x)), *metrics)
                     
                     return loss_mean, (metrics_mean)
 

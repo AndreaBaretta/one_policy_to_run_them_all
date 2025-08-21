@@ -80,7 +80,7 @@ class AsyncVectorEnvWithSkipping(gym.vector.AsyncVectorEnv):
 
             if sum(self.skipped_envs) <= self.skip_threshold:
                 break
-
+        
         self._raise_if_errors(successes)
         self._state = AsyncState.DEFAULT
 
