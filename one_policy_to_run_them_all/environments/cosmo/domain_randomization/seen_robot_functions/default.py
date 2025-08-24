@@ -93,7 +93,13 @@ class DefaultDomainSeenRobotFunction:
 
         self.env.model.body_ipos[1] = (self.default_trunk_com + self.env.np_rng.uniform(self.add_com_displacement_min, self.add_com_displacement_max)) * self.com_displacement_noise_factor
 
-        self.env.model.geom_size[[24, 44],0] = self.env.np_rng.uniform(self.foot_size_min, self.foot_size_max) * self.foot_size_noise_factor
+        # In Cassie, 44 is right_foot, 24 is left_foot
+        # print([mujoco.mj_id2name(self.env.model, mujoco.mjtObj.mjOBJ_GEOM, i) for i in range(self.env.model.ngeom)])
+        # import pdb; pdb.set_trace()
+        # In Cosmo: geom_names - ['body_collision', 'body_visual', 'hip_l_visual', 'adductor_l_collision', 'adductor_l_visual', 'femur_l_collision', 'femur_l_visual', 'tibia_l_collision', 'tibia_l_visual', 'foot_l_collision', 'foot_l_visual', 'hip_r_visual', 'adductor_r_collision', 'adductor_r_visual', 'femur_r_collision', 'femur_r_visual', 'tibia_r_collision', 'tibia_r_visual', 'foot_r_collision', 'foot_r_visual', 'clavicle_l_visual', 'upperarm_l_visual', 'forearm_l_collision', 'forearm_l_visual', 'hand_l_collision', 'hand_l_visual', 'clavicle_r_visual', 'upperarm_r_visual', 'forearm_r_collision', 'forearm_r_visual', 'hand_r_collision', 'hand_r_visual', 'neck_bottom_visual', 'neck_top_collision']
+        # 9 is foot_l_collision
+        # 18 is foot_r_collision
+        self.env.model.geom_size[[9, 18],0] = self.env.np_rng.uniform(self.foot_size_min, self.foot_size_max) * self.foot_size_noise_factor
 
         self.seen_joint_nominal_position = self.default_joint_nominal_position + self.env.np_rng.uniform(self.add_joint_nominal_position_min, self.add_joint_nominal_position_max, size=self.default_joint_nominal_position.shape)
         self.env.nominal_joint_positions = self.seen_joint_nominal_position
@@ -116,8 +122,10 @@ class DefaultDomainSeenRobotFunction:
         else:
             self.seen_joint_damping = self.default_joint_damping * (1 + self.env.np_rng.uniform(-self.joint_damping_factor, self.joint_damping_factor, size=self.default_joint_damping.shape))
             self.seen_joint_armature = self.env.np_rng.uniform(self.joint_armature_min, self.joint_armature_max, size=self.default_joint_armature.shape)
-            self.seen_joint_stiffness = self.env.np_rng.uniform(self.joint_stiffness_min, self.joint_stiffness_max, size=self.default_joint_stiffness.shape)
-            self.seen_joint_stiffness[[5, 7, 16, 18]] = self.default_joint_stiffness[[5, 7, 16, 18]]  # These joints have to keep their high stiffness
+            self.seen_joint_stiffness = self.default_joint_stiffness
+            # TODO: what the hell are these joints?
+            # self.seen_joint_stiffness = self.env.np_rng.uniform(self.joint_stiffness_min, self.joint_stiffness_max, size=self.default_joint_stiffness.shape)
+            # self.seen_joint_stiffness[[5, 7, 16, 18]] = self.default_joint_stiffness[[5, 7, 16, 18]]  # These joints have to keep their high stiffness
             self.seen_joint_frictionloss = self.env.np_rng.uniform(self.joint_friction_loss_min, self.joint_friction_loss_max, size=self.default_joint_frictionloss.shape)
         self.env.model.dof_damping[6:] = self.seen_joint_damping * self.joint_damping_noise_factor
         self.env.model.dof_armature[6:] = self.seen_joint_armature * self.joint_armature_noise_factor

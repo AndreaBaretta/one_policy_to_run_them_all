@@ -13,6 +13,7 @@ from flax.training import orbax_utils
 import orbax.checkpoint
 import optax
 import wandb
+import shutil
 
 from one_policy_to_run_them_all.algorithms.uni_ppo.ppo.general_properties import GeneralProperties
 from one_policy_to_run_them_all.algorithms.uni_ppo.ppo.policy import get_policy
@@ -614,9 +615,9 @@ class PPO:
 
                 self.start_logging(self.global_step)
                 for key, value in additional_metrics.items():
-                    self.log(key, value, self.global_step)
+                    self.log(key, np.asarray(value), self.global_step)
                 for key, value in optimization_metrics.items():
-                    self.log(key, value, self.global_step)
+                    self.log(key, np.asarray(value), self.global_step)
                 self.end_logging()
 
 
@@ -723,7 +724,7 @@ class PPO:
             self.best_model_checkpointer.save(f"{self.save_path}/tmp", checkpoint, save_args=save_args)
             os.rename(f"{self.save_path}/tmp/{self.best_model_file_name}", f"{self.save_path}/{self.best_model_file_name}")
             os.remove(f"{self.save_path}/tmp/_METADATA")
-            os.rmdir(f"{self.save_path}/tmp")
+            shutil.rmtree(f"{self.save_path}/tmp")
 
             if self.track_wandb:
                 wandb.save(f"{self.save_path}/{self.best_model_file_name}", base_path=self.save_path)
@@ -731,7 +732,7 @@ class PPO:
             self.latest_model_checkpointer.save(f"{self.save_path}/tmp", checkpoint, save_args=save_args)
             os.rename(f"{self.save_path}/tmp/{self.latest_model_file_name}", f"{self.save_path}/{self.latest_model_file_name}")
             os.remove(f"{self.save_path}/tmp/_METADATA")
-            os.rmdir(f"{self.save_path}/tmp")
+            shutil.rmtree(f"{self.save_path}/tmp")
 
             if self.track_wandb:
                 wandb.save(f"{self.save_path}/{self.latest_model_file_name}", base_path=self.save_path)
